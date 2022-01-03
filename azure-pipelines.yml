@@ -25,5 +25,5 @@ steps:
     serviceConnectionEndpoint: 'Snykconnection'
     testType: 'app'
     monitorWhen: 'always'
-    failOnIssues: true
+    failOnIssues: false
     projectName: 'Demo'
