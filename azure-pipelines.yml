@@ -17,7 +17,7 @@ steps:
     jdkSourceOption: 'PreInstalled'
 - task: SonarQubePrepare@5
   inputs:
-    SonarQube: 'Sonarconnection'
+    SonarQube: 'Sonarconnections'
     scannerMode: 'Other'
     extraProperties: |
       # Additional properties that will be passed to the scanner,
