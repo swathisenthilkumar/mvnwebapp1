@@ -10,20 +10,23 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: JavaToolInstaller@0
-  inputs:
-    versionSpec: '11'
-    jdkArchitectureOption: 'x64'
-    jdkSourceOption: 'PreInstalled'
+
 - task: SonarQubePrepare@5
   inputs:
-    SonarQube: 'Sonarconnections'
+    SonarQube: 'SonarConnections'
     scannerMode: 'Other'
     extraProperties: |
       # Additional properties that will be passed to the scanner,
       # Put one key=value per line, example:
       # sonar.exclusions=**/*.bin
       sonar.projectKey=Demoproject_Demoproject
+- task: JavaToolInstaller@0
+  inputs:
+    versionSpec: '11'
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'PreInstalled'
+
+
 
 - task: Maven@3
   inputs:
