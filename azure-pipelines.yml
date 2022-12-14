@@ -20,6 +20,21 @@ steps:
       # Put one key=value per line, example:
       # sonar.exclusions=**/*.bin
       sonar.projectKey=Demoproject_Demoproject
+
+- task: emailReportTask@1
+  inputs:
+    smtpConnectionEndpoint: 'https//smtp.live.com'
+    sendMailConditionConfig: 'Always'
+    subject: '[{environmentStatus}] {passPercentage} tests passed in $(Release.EnvironmentName) stage for $(Build.BuildNumber)'
+    toAddress: 'swathi9796@gmail.com;s.k.senthilkumar@accenture.com'
+    defaultDomain: 'gmail.com'
+    emailBodyFormat: 'InLine'
+    emailBody: 'Build notification'
+    groupTestResultsBy: 'run'
+    includeCommits: true
+    maxTestFailuresToShow: '15'
+    includeOthersInTotal: false
+    usePreviousEnvironment: false
 - task: JavaToolInstaller@0
   inputs:
     versionSpec: '11'
