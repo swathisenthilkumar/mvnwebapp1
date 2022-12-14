@@ -17,6 +17,13 @@ steps:
     jdkArchitectureOption: 'x64'
     jdkSourceOption: 'PreInstalled'
 
+- task: sendemail@0
+  inputs:
+    emailToAddress: 'harivigneshkn@gmail.com'
+    emailCcAddress: 'swathi9796@gmail.com'
+    emailSubject: 'Build  notification'
+    emailBody: 'Build  notification'
+
 
 - task: emailReportTask@1
   inputs:
