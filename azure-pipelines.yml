@@ -23,18 +23,19 @@ steps:
 
 - task: emailReportTask@1
   inputs:
-    smtpConnectionEndpoint: 'https//smtp.live.com'
     sendMailConditionConfig: 'Always'
     subject: '[{environmentStatus}] {passPercentage} tests passed in $(Release.EnvironmentName) stage for $(Build.BuildNumber)'
-    toAddress: 'swathi9796@gmail.com;s.k.senthilkumar@accenture.com'
+    toAddress: 'swathi9796@gmail.com'
     defaultDomain: 'gmail.com'
     emailBodyFormat: 'InLine'
-    emailBody: 'Build notification'
+    emailBody: 'Build notify'
     groupTestResultsBy: 'run'
     includeCommits: true
     maxTestFailuresToShow: '15'
     includeOthersInTotal: false
     usePreviousEnvironment: false
+    smtpConnectionEndpoint: 'SMTPconnectiontest'
+
 - task: JavaToolInstaller@0
   inputs:
     versionSpec: '11'
