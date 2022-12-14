@@ -29,8 +29,8 @@ steps:
   inputs:
     sendMailConditionConfig: 'Always'
     subject: '[{environmentStatus}] {passPercentage} tests passed in $(Release.EnvironmentName) stage for $(Build.BuildNumber)'
-    toAddress: 'swathi9796@gmail.com'
-    defaultDomain: 'invati.ai'
+    toAddress: 'swathi9796@gmail.com;harivigneshkn@gmail.com'
+    defaultDomain: 'gmail.com'
     emailBodyFormat: 'InLine'
     emailBody: 'Build notify'
     groupTestResultsBy: 'run'
