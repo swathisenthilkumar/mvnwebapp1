@@ -11,15 +11,6 @@ pool:
 
 steps:
 
-- task: SonarQubePrepare@5
-  inputs:
-    SonarQube: 'SonarConnections'
-    scannerMode: 'Other'
-    extraProperties: |
-      # Additional properties that will be passed to the scanner,
-      # Put one key=value per line, example:
-      # sonar.exclusions=**/*.bin
-      sonar.projectKey=Demoproject_Demoproject
 
 - task: emailReportTask@1
   inputs:
