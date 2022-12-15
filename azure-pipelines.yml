@@ -12,7 +12,7 @@ pool:
 
 jobs:
 - job: test
-  condition: 
+ 
   pool:
     name: Default
   steps:
