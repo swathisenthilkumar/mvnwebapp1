@@ -15,7 +15,8 @@ steps:
   inputs:
     targetType: 'inline'
     script: 'curl -H ''Content-Type: application/json'' -d ''{"text": "Hello World"}'' https://accenture.webhook.office.com/webhookb2/c6aea564-fe88-48b4-9fa6-a737f1425035@e0793d39-0939-496d-b129-198edd916feb/IncomingWebhook/15e5aab7761341388f908a5fe592fbc9/570d319c-d336-48a2-b32e-88ba623aa565'
-  condition: always()
+  condition: failed()
+  dependsOn: test
      
 
 - task: JavaToolInstaller@0
@@ -24,26 +25,24 @@ steps:
     jdkArchitectureOption: 'x64'
     jdkSourceOption: 'PreInstalled'
 
-- task: sendemail@0
-  inputs:
-    emailToAddress: 'swathi9796@gmail.com'
-    emailCcAddress: 'swathi9796@gmail.com'
-    emailSubject: 'Build  notification'
-    emailBody: 'Build  notification'
-
-
-- task: emailReportTask@1
-  inputs:
-    sendMailConditionConfig: 'Always'
-    subject: '[{environmentStatus}] {passPercentage} tests passed in $(Release.EnvironmentName) stage for $(Build.BuildNumber)'
-    toAddress: 'swathi9796@gmail.com'
-    defaultDomain: 'gmail.com'
-    emailBodyFormat: 'InLine'
-    emailBody: 'Build notify'
-    groupTestResultsBy: 'run'
-    includeCommits: true
-    maxTestFailuresToShow: '15'
-    includeOthersInTotal: false
-    usePreviousEnvironment: false
-    smtpConnectionEndpoint: 'SMTPconnectiontest'
+jobs:
+- job: test
+  condition: 
+  pool:
+    name: Default
+  steps:
+    - task: emailReportTask@1
+      inputs:
+        sendMailConditionConfig: 'Always'
+        subject: '[{environmentStatus}] {passPercentage} tests passed in $(Release.EnvironmentName) stage for $(Build.BuildNumber)'
+        toAddress: 'swathi9796@gmail.com'
+        defaultDomain: 'gmail.com'
+        emailBodyFormat: 'InLine'
+        emailBody: 'Build notify'
+        groupTestResultsBy: 'run'
+        includeCommits: true
+        maxTestFailuresToShow: '15'
+        includeOthersInTotal: false
+        usePreviousEnvironment: false
+        smtpConnectionEndpoint: 'SMTPconnectiontest'
 
