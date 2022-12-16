@@ -44,5 +44,5 @@ jobs:
     inputs:
       targetType: 'inline'
       script: |
-        curl -H 'Content-Type: application/json' -d ' {"text": $(one) }' $(webhookurl)
+        curl -H 'Content-Type: application/json' -d ' {"text": "+$(one)+" }' $(webhookurl)
   
