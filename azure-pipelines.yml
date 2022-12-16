@@ -35,11 +35,14 @@ jobs:
 - job: Bar
   dependsOn: test
   condition: failed()
+  variables:
+    - name: one
+      value : Success
  
   steps:
   - task: Bash@3
     inputs:
       targetType: 'inline'
       script: |
-        curl -H 'Content-Type: application/json' -d ' {"text": "$(message)"}' $(webhookurl)
+        curl -H 'Content-Type: application/json' -d ' {"text": ${{variable.one}} }' $(webhookurl)
   
