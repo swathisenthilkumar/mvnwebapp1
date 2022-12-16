@@ -35,9 +35,7 @@ jobs:
 - job: Bar
   dependsOn: test
   condition: failed()
-  variables:
-  - name: one
-    value: "Success"
+ 
   steps:
   - task: Bash@3
     inputs:
