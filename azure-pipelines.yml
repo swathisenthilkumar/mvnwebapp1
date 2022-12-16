@@ -37,11 +37,11 @@ jobs:
   condition: failed()
   variables:
   - name: one
-    value: Success
+    value: "Success"
   steps:
   - task: Bash@3
     inputs:
       targetType: 'inline'
       script: |
-        curl -H 'Content-Type: application/json' -d ' {"text": "Job failed"}' $(webhookurl)
+        curl -H 'Content-Type: application/json' -d ' {"text": "$(one.value)"}' $(webhookurl)
   
