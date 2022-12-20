@@ -9,6 +9,16 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+
+jobs:
+- job: test
+ 
+  pool:
+    name: Default
+   
+
+- job: Bar
+  
   variables:
     - name: Displaymessage
       value : Success
