@@ -12,11 +12,6 @@ pool:
 
 jobs:
 
- 
-  pool:
-    name: Default
-   
-
 - job: Test
   
   variables:
