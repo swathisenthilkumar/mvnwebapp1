@@ -36,7 +36,7 @@ jobs:
   dependsOn: test
   condition: failed()
   variables:
-    - name: one
+    - name: Displaymessage
       value : Success
  
   steps:
@@ -44,5 +44,5 @@ jobs:
     inputs:
       targetType: 'inline'
       script: |
-        curl -H 'Content-Type: application/json' -d ' {"text": "$(one)" }' $(webhookurl)
+        curl -H 'Content-Type: application/json' -d ' {"text": "$(Displaymessage)" }' $(webhookurl)
   
