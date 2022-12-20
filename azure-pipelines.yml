@@ -11,13 +11,13 @@ pool:
 
 
 jobs:
-- job: test
+
  
   pool:
     name: Default
    
 
-- job: Bar
+- job: Test
   
   variables:
     - name: Displaymessage
