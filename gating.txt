@@ -1,0 +1,23 @@
+script: |    
+       snykCount=$(curl -X GET --header 'Content-Type: application/json' --header 'Authorization: token $(snyk-token)' 'https://api.snyk.io/api/v1/org/<org id>/project/<project id>')
+       CRITICAL=$(echo "$snykCount" | jq .issueCountsBySeverity.critical )
+       HIGH=$(echo "$snykCount" | jq .issueCountsBySeverity.high )
+       MEDIUM=$(echo "$snykCount" | jq .issueCountsBySeverity.medium )
+       LOW=$(echo "$snykCount" | jq .issueCountsBySeverity.low )
+       echo "CRITICAL = $CRITICAL"
+       echo "HIGH = $HIGH"
+       echo "MEDIUM = $MEDIUM"
+       echo "LOW = $LOW"
+       if [ $CRITICAL -gt 0 ]
+       then
+         curl -H 'Content-Type: application/json' -d '{"text": "<Application Name> has Critical Issues in Snyk"}' $(teams_webhook)          
+         echo "##[error]Application has critical issues"
+         #exit 1
+       elif [ $HIGH -gt 0 ]
+       then
+         curl -H 'Content-Type: application/json' -d '{"text": "<Application Name> has High Issues in Snyk"}' $(teams_webhook)          
+         echo "##[error]Application has High issues"
+         #exit 1
+       else
+         echo "PASSED"
+       fi
